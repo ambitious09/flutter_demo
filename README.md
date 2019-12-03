@@ -1,2 +1,2 @@
 # flutter_demo
-平常学习flutter联系的一些demo
+平常学习flutter练习的一些demo
