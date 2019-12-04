@@ -1,0 +1,6 @@
+framework module drop_down_list {
+  umbrella header "drop_down_list-umbrella.h"
+
+  export *
+  module * { export * }
+}

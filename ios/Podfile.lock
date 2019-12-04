@@ -1,0 +1,22 @@
+PODS:
+  - drop_down_list (0.0.1):
+    - Flutter
+  - Flutter (1.0.0)
+
+DEPENDENCIES:
+  - drop_down_list (from `.symlinks/plugins/drop_down_list/ios`)
+  - Flutter (from `.symlinks/flutter/ios`)
+
+EXTERNAL SOURCES:
+  drop_down_list:
+    :path: ".symlinks/plugins/drop_down_list/ios"
+  Flutter:
+    :path: ".symlinks/flutter/ios"
+
+SPEC CHECKSUMS:
+  drop_down_list: 7fa6c3cf0a0b51435edbd986aec7c7c2d108baae
+  Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
+
+PODFILE CHECKSUM: 10ae9c18d12c9ffc2275c9a159a3b1e281990db0
+
+COCOAPODS: 1.8.4
