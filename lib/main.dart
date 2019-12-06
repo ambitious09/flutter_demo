@@ -29,18 +29,24 @@ import 'spash_page.dart';
 import 'tabdemo/tabbar_demo2.dart';
 import 'test_demo.dart';
 import 'dart:async';
+import 'package:flutter_bugly/flutter_bugly.dart';
 
 Future<Null> main() async{
-  FlutterError.onError=(FlutterErrorDetails details){
-      if(!bool.fromEnvironment("dart.vm.product")){
-FlutterError.dumpErrorToConsole(details);
-      }else{
-        Zone.current.handleUncaughtError(
-            details.exception, details.stack);
-      }
-  };
+//  FlutterError.onError = (FlutterErrorDetails details) {
+//    if (!bool.fromEnvironment("dart.vm.product")) {
+//      FlutterError.dumpErrorToConsole(details);
+//    } else {
+//      Zone.current.handleUncaughtError(
+//          details.exception, details.stack);
+//    }
+//  };
+  FlutterBugly.postCatchedException((){
+
+    runApp(MyApp());
+  });
+  FlutterBugly.init(androidAppId: "79ea0abdc7",iOSAppId: "");
   debugPaintSizeEnabled = true;
-  setCustomErrorPage();
+//  setCustomErrorPage();
 
 //SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then((_){});
 }
@@ -48,7 +54,6 @@ FlutterError.dumpErrorToConsole(details);
 void setCustomErrorPage() {
   runZoned(() {
     ErrorWidget.builder = (FlutterErrorDetails flutterErrorDetails) {
-
 //      print(flutterErrorDetails.toString());
       return Center(
         child: Text("Flutter 走神了"),
@@ -56,13 +61,17 @@ void setCustomErrorPage() {
     };
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then((
         _) {
-      runApp(MyApp());
-    });
+      FlutterBugly.postCatchedException((){
 
-  },onError: (e){
+      runApp(MyApp());
+      });
+      FlutterBugly.init(androidAppId: "79ea0abdc7",iOSAppId: "");
+    });
+  }, onError: (e) {
     print("错误=$e");
 //    print("错误=$stack");
   });
+  
 }
 
 Widget creatApp() {

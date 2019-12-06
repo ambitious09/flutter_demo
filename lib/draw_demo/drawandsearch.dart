@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_demo/draw_demo/search_demo_search_delegate.dart';
+import 'package:flutter_demo/util/tools.dart';
 
 class DrawerDemo extends StatefulWidget {
   @override
@@ -10,6 +11,7 @@ class _DrawerDemoState extends State<DrawerDemo> {
   final SearchDemoSearchDelegate _delegate = SearchDemoSearchDelegate();
  final  GlobalKey<ScaffoldState> _globalKey=new GlobalKey<ScaffoldState>();
  int _lastIntegerSelected;
+ dynamic str="12121";
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +54,9 @@ class _DrawerDemoState extends State<DrawerDemo> {
                   ? Icons.more_horiz
                   : Icons.more_vert,
             ),
-            onPressed: () { },
+            onPressed: Tools().debounce(() {
+               print("测试快速点击");
+            },500)
           )
         ],
 
@@ -91,7 +95,10 @@ class _DrawerDemoState extends State<DrawerDemo> {
       ),
       floatingActionButton: FloatingActionButton.extended(tooltip: 'Back', // Tests depend on this label to exit the demo.
         onPressed: () {
-          Navigator.of(context).pop();
+//          Navigator.of(context).pop();
+         setState(() {
+           str=null;
+         });
         },
         label: const Text('Close demo'),
         icon: const Icon(Icons.close),),
@@ -115,9 +122,9 @@ class _DrawerDemoState extends State<DrawerDemo> {
               context: context,
               // DrawerHeader consumes top MediaQuery padding.
               removeTop: true,
-              child: const ListTile(
+              child:  ListTile(
                 leading: Icon(Icons.payment),
-                title: Text('Placeholder'),
+                title: Text(str),
               ),
             ),
           ],

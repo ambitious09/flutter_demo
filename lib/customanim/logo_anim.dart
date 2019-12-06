@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/animation.dart';
 import 'package:flutter_demo/customanim/custanim_build.dart';
 import 'dart:math';
+import 'package:flutter_demo/customanim/single.dart';
 
 
 class LogoAnim extends StatefulWidget {
@@ -31,6 +32,7 @@ class _LogoAnimState extends State<LogoAnim> with SingleTickerProviderStateMixin
    _controller.forward();
 
     super.initState();
+
 
   }
 

@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="demo.example.com.flutter_demo">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:name="io.flutter.app.FlutterApplication"
         android:icon="@mipmap/ic_launcher"
