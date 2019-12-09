@@ -8,7 +8,6 @@
         android:icon="@mipmap/ic_launcher"
         android:label="flutter_demo"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Test"></activity>
         <activity
             android:name=".MainActivity"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
@@ -32,7 +31,15 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:mimeType="text/plain" />
+            </intent-filter>
         </activity>
+        <activity android:name=".SecondActivity"  android:theme="@style/LaunchTheme"/>
     </application>
 
 </manifest>

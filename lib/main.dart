@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bugly/flutter_bugly.dart';
 import 'package:flutter_demo/Isolatesdemo/Isolates_demo.dart';
 import 'package:flutter_demo/card_demo.dart';
 import 'package:flutter_demo/customanim/logo_anim.dart';
@@ -12,6 +13,7 @@ import 'package:flutter_demo/draw_demo/drawandsearch.dart';
 import 'package:flutter_demo/droplist/drop_list_demo.dart';
 import 'package:flutter_demo/glide_demo.dart';
 import 'package:flutter_demo/hero_demo/hero_one.dart';
+import 'package:flutter_demo/jpush_demo/jpush_demo.dart';
 import 'package:flutter_demo/my_custom_view.dart';
 import 'package:flutter_demo/navation_demo.dart';
 import 'package:flutter_demo/provider/CurrentIndexProvide.dart';
@@ -31,14 +33,19 @@ import 'test_demo.dart';
 import 'dart:async';
 
 Future<Null> main() async{
-  FlutterError.onError=(FlutterErrorDetails details){
-      if(!bool.fromEnvironment("dart.vm.product")){
-FlutterError.dumpErrorToConsole(details);
-      }else{
-        Zone.current.handleUncaughtError(
-            details.exception, details.stack);
-      }
-  };
+//  FlutterError.onError=(FlutterErrorDetails details){
+//      if(!bool.fromEnvironment("dart.vm.product")){
+//FlutterError.dumpErrorToConsole(details);
+//      }else{
+//        Zone.current.handleUncaughtError(
+//            details.exception, details.stack);
+//      }
+//  };
+  FlutterBugly.postCatchedException((){
+
+    runApp(MyApp());
+  });
+  FlutterBugly.init(androidAppId: "79ea0abdc7",iOSAppId: "");
   debugPaintSizeEnabled = true;
   setCustomErrorPage();
 
@@ -133,7 +140,8 @@ class MyApp extends StatelessWidget {
 //      home: IsolateDemo(),
 //      home: ClockPage(),
 //      home: DrawDemo(),
-      home: DrawerDemo(),
+//      home: DrawerDemo(),
+      home: JpushDemo(),
     );
   }
 }

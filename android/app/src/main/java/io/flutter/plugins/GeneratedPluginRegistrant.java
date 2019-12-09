@@ -2,6 +2,8 @@ package io.flutter.plugins;
 
 import io.flutter.plugin.common.PluginRegistry;
 import come.drop_down_list.DropDownListPlugin;
+import com.crazecoder.flutterbugly.FlutterBuglyPlugin;
+import com.jiguang.jpush.JPushPlugin;
 
 /**
  * Generated file. Do not edit.
@@ -12,6 +14,8 @@ public final class GeneratedPluginRegistrant {
       return;
     }
     DropDownListPlugin.registerWith(registry.registrarFor("come.drop_down_list.DropDownListPlugin"));
+    FlutterBuglyPlugin.registerWith(registry.registrarFor("com.crazecoder.flutterbugly.FlutterBuglyPlugin"));
+    JPushPlugin.registerWith(registry.registrarFor("com.jiguang.jpush.JPushPlugin"));
   }
 
   private static boolean alreadyRegisteredWith(PluginRegistry registry) {

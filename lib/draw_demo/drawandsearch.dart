@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_demo/draw_demo/search_demo_search_delegate.dart';
+import 'package:flutter/services.dart';
 
 class DrawerDemo extends StatefulWidget {
   @override
@@ -10,6 +11,17 @@ class _DrawerDemoState extends State<DrawerDemo> {
   final SearchDemoSearchDelegate _delegate = SearchDemoSearchDelegate();
  final  GlobalKey<ScaffoldState> _globalKey=new GlobalKey<ScaffoldState>();
  int _lastIntegerSelected;
+// static final methodchanel= new MethodChannel("com.demo");
+// String showText;
+
+
+ @override
+  void initState() {
+    // TODO: implement initStateget
+    super.initState();
+//    getShowText();
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -125,4 +137,14 @@ class _DrawerDemoState extends State<DrawerDemo> {
       ),
     );
   }
+
+//  void getShowText() async{
+//   var showData= await methodchanel.invokeMethod("getshowtext");
+//    if(showData!=null){
+//      setState(() {
+//        showText=showData;
+//      });
+//    }
+//
+//  }
 }
