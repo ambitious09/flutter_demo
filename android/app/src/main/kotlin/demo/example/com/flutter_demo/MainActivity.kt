@@ -23,6 +23,7 @@ class MainActivity : FlutterActivity() {
         Executors.newScheduledThreadPool(6)
         System.err.println("线程数量=" + Runtime.getRuntime().availableProcessors())
 //    AsyncTask
+        
         val intrnt = intent
         val action = intrnt?.action
         val type = intrnt?.type
