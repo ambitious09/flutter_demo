@@ -10,5 +10,9 @@
         android:layout_height="wrap_content"
         tools:text="测试"
         />
+    <android.opengl.GLSurfaceView
+        android:id="@+id/mGlView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

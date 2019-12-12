@@ -14,6 +14,7 @@ class SecondActivity: AppCompatActivity() {
         setContentView(R.layout.activity_second)
 //      val content=  intent.getStringExtra("flutter")
         mContent.text=content
+
     }
 
     companion object{
@@ -25,5 +26,6 @@ class SecondActivity: AppCompatActivity() {
         }
 
     }
+
 
 }
