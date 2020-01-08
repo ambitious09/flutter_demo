@@ -23,8 +23,12 @@ import 'package:flutter_demo/scroll/scroll_demo.dart';
 import 'package:flutter_demo/sliever_demo/sliever_demo.dart';
 import 'package:flutter_demo/tabdemo/tabbar_demo.dart';
 import 'package:flutter_demo/textfield_demo/text_field.dart';
+import 'package:flutter_i18n/flutter_i18n_delegate.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 import 'future_demo2.dart';
+import 'i18n/my_i18n.dart';
+import 'inheritedwidget/myinheritedwidget.dart';
 import 'spash_page.dart';
 import 'tabdemo/tabbar_demo2.dart';
 import 'test_demo.dart';
@@ -129,7 +133,7 @@ class MyApp extends StatelessWidget {
 //      home: FutureDemo2() ,
 //      home: ScrollPage3(titls: "测试",),
 //      home: AppPage(),
-//      home: SlieverDemo(),
+      home: SlieverDemo(),
 //      home: LogoAnim(),
 //      home: DropListDemo(),
 //      home: Test(),
@@ -142,7 +146,16 @@ class MyApp extends StatelessWidget {
 //      home: IsolateDemo(),
 //      home: ClockPage(),
 //      home: DrawDemo(),
-      home: DrawerDemo(),
+//      home: DrawerDemo(),
+
+//      home: MyTree(),
+//      home: MyI18n(),
+      localizationsDelegates: [
+        FlutterI18nDelegate(
+            useCountryCode: false, fallbackFile: 'en', path: 'images/i18n'),
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate
+      ],
     );
   }
 }

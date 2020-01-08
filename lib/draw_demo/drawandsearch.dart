@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_demo/draw_demo/search_demo_search_delegate.dart';
 import 'package:flutter_demo/util/tools.dart';
+import 'package:flare_flutter/flare_actor.dart';
 
 class DrawerDemo extends StatefulWidget {
   @override
@@ -90,6 +91,17 @@ class _DrawerDemoState extends State<DrawerDemo> {
 //            ),
             const SizedBox(height: 64.0),
             Text('Last selected integer: ${_lastIntegerSelected ?? 'NONE' }.'),
+            SizedBox(
+              width: 42,
+              height: 42,
+              child: FlareActor(
+                "images/myfir.flr",
+                alignment: Alignment.center,
+                fit: BoxFit.contain,
+//                animation: "switch_day",
+
+              ),
+            )
           ],
         ),
       ),

@@ -2,6 +2,8 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_demo/glide_demo.dart';
+import 'package:flutter_demo/i18n/my_i18n.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
 
 class SlieverDemo extends StatelessWidget {
   final media = MediaQueryData.fromWindow(WidgetsBinding.instance.window);
@@ -11,7 +13,7 @@ class SlieverDemo extends StatelessWidget {
     print("底部距离=${media.viewPadding.bottom}");
     return Scaffold(
         appBar: AppBar(
-          title: Text("吸顶"),
+          title: Text(FlutterI18n.translate(context, "title")),
         ),
         body: Column(
           children: <Widget>[
@@ -25,14 +27,18 @@ class SlieverDemo extends StatelessWidget {
                 width: MediaQuery.of(context).size.width,
                 child: RaisedButton(
                   onPressed: () {
+//                    Navigator.push(
+//                        context,
+//                        MaterialPageRoute(
+//                            builder: (context) => ScrollPage3(
+//                                  titls: "test",
+//                                )));
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => ScrollPage3(
-                                  titls: "test",
-                                )));
+                            builder: (BuildContext context) => MyI18n(language: "it")));
                   },
-                  child: Text("测试"),
+                  child: Text(FlutterI18n.translate(context, "title")),
                   color: Colors.green,
                 ))
           ],
@@ -53,7 +59,8 @@ class SlieverDemo extends StatelessWidget {
                   color: index % 2 == 0 ? Colors.white : Colors.black12,
                   width: double.infinity,
                   alignment: Alignment.center,
-                  child: Text("我是第${index}个item"),
+                  child: Text(FlutterI18n.translate(context, "content",
+                      Map.fromIterables(["index"], ["$index"]))),
                 ),
               )
             : Container(
@@ -61,7 +68,8 @@ class SlieverDemo extends StatelessWidget {
                 color: index % 2 == 0 ? Colors.white : Colors.black12,
                 width: double.infinity,
                 alignment: Alignment.center,
-                child: Text("我是第${index}个item"),
+                child: Text(FlutterI18n.translate(context, "content",
+                    Map.fromIterables(["index"], ["$index"]))),
               );
       }, childCount: 50),
     );

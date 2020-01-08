@@ -1,0 +1,17 @@
+{
+  "title": "测试 app",
+  "test": "测试",
+  "content": "我是第{index}个item",
+  "label": {
+    "main": "你好 app"
+  },
+  "button": {
+    "clickMe": "点击这儿"
+  },
+  "toastMessage": "点击这个按钮",
+  "clicked": {
+    "times-0": "你点击 {times} 次!",
+    "times-1": "你点击{time} 次!",
+    "times-2": "你点击{times} 次!"
+  }
+}
