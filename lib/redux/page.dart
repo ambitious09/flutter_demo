@@ -11,8 +11,10 @@ class testPage extends Page<testState, Map<String, dynamic>> {
           effect: buildEffect(),
           reducer: buildReducer(),
           view: buildView,
-//          dependencies: Dependencies<testState>(
-//              adapter: null, slots: <String, Dependent<testState>>{}),
-//          middleware: <Middleware<testState>>[],
+          dependencies: Dependencies<testState>(
+              adapter: null,
+              slots: <String, Dependent<testState>>{}
+              ),
+              middleware: <Middleware<testState>>[],
         );
 }

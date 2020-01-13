@@ -1,3 +1,4 @@
+import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
 
 
@@ -34,6 +35,7 @@ class MyHomePage extends StatelessWidget {
           Container(
             color: Colors.blue,
           ),
+
         ].map<Widget>((Widget widget){
               return Expanded(
                 flex: 1,
@@ -43,4 +45,26 @@ class MyHomePage extends StatelessWidget {
       ),
     );
   }
+}
+
+typedef Testwidget= int Function(int,int);
+int sort()=>0;
+
+Testwidget adddata(int a){
+
+  return (x,y)=>x+y+a;
+}
+
+class test{
+     Testwidget testwidget;
+     test(this.testwidget);
+}
+void main(){
+//  test te=test(sort);
+//  te.testwidget is Function;
+
+   var ad=adddata(3);
+   print(ad(1,2));
+
+
 }

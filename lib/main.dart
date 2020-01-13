@@ -18,11 +18,13 @@ import 'package:flutter_demo/provider/CurrentIndexProvide.dart';
 import 'package:flutter_demo/provider/index_app.dart';
 import 'package:flutter_demo/provider_demo/computer_page.dart';
 import 'package:flutter_demo/redux/page.dart';
+import 'package:flutter_demo/routes.dart';
 import 'package:flutter_demo/sanjiliandong/first_pager.dart';
 import 'package:flutter_demo/scroll/scroll_demo.dart';
 import 'package:flutter_demo/sliever_demo/sliever_demo.dart';
 import 'package:flutter_demo/tabdemo/tabbar_demo.dart';
 import 'package:flutter_demo/textfield_demo/text_field.dart';
+import 'package:flutter_demo/widget/no_scale_text_widget.dart';
 import 'package:flutter_i18n/flutter_i18n_delegate.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
@@ -34,6 +36,8 @@ import 'tabdemo/tabbar_demo2.dart';
 import 'test_demo.dart';
 import 'dart:async';
 import 'package:flutter_bugly/flutter_bugly.dart';
+import 'package:flutter_demo/fish_redux_muiltype_adapter/global_store/state.dart';
+import 'package:flutter_demo/fish_redux_muiltype_adapter/global_store/store.dart';
 
 Future<Null> main() async{
 //  FlutterError.onError = (FlutterErrorDetails details) {
@@ -67,7 +71,7 @@ void setCustomErrorPage() {
         _) {
       FlutterBugly.postCatchedException((){
 
-      runApp(MyApp());
+      runApp(creatApp());
       });
       FlutterBugly.init(androidAppId: "79ea0abdc7",iOSAppId: "");
     });
@@ -78,24 +82,9 @@ void setCustomErrorPage() {
   
 }
 
-Widget creatApp() {
 
-  final AbstractRoutes routes = PageRoutes(
-    pages: <String, Page<Object, dynamic>>{
-//    "cust": MyApp(),
-      "test": testPage(),
-    },
-    visitor: (String path, Page<Object, dynamic> page) {
-      page.enhancer.append(
-        viewMiddleware: <ViewMiddleware<dynamic>>[safetyView<dynamic>()],
-        adapterMiddleware: <AdapterMiddleware<dynamic>>[
-          safetyAdapter<dynamic>()
-        ],
-        effectMiddleware: [],
-        middleware: <Middleware<dynamic>>[logMiddleware<dynamic>()],
-      );
-    },
-  );
+
+Widget creatApp() {
 
   return MaterialApp(
     title: 'fish_redux_demo',
@@ -103,7 +92,7 @@ Widget creatApp() {
     theme: ThemeData(
       primarySwatch: Colors.blue,
     ),
-    home: routes.buildPage('test', null),
+    home: routes.buildPage('todo', null),
     onGenerateRoute: (RouteSettings settings) {
       return MaterialPageRoute<Object>(builder: (BuildContext context) {
         return routes.buildPage(settings.name, settings.arguments);
@@ -133,7 +122,7 @@ class MyApp extends StatelessWidget {
 //      home: FutureDemo2() ,
 //      home: ScrollPage3(titls: "测试",),
 //      home: AppPage(),
-      home: SlieverDemo(),
+//      home: SlieverDemo(),
 //      home: LogoAnim(),
 //      home: DropListDemo(),
 //      home: Test(),
@@ -150,12 +139,27 @@ class MyApp extends StatelessWidget {
 
 //      home: MyTree(),
 //      home: MyI18n(),
+      home: routes.buildPage('todo_list', null),
       localizationsDelegates: [
         FlutterI18nDelegate(
             useCountryCode: false, fallbackFile: 'en', path: 'images/i18n'),
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate
       ],
+      onGenerateRoute: (RouteSettings settings) {
+        return MaterialPageRoute<Object>(
+            builder: (BuildContext context) {
+          return routes.buildPage(settings.name, settings.arguments);
+        },
+            settings: RouteSettings(name: settings.name));
+
+
+      },
+
+      builder: (context,child){
+        return NoScaleTextWidget(child: child);  // 全局控制应用的字体大小
+      },
+
     );
   }
 }
