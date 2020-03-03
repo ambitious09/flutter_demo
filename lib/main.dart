@@ -1,3 +1,4 @@
+import 'package:event_bus/event_bus.dart';
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,7 @@ import 'package:flutter_demo/custompaint/clock_page.dart';
 import 'package:flutter_demo/draw.dart';
 import 'package:flutter_demo/draw_demo/drawandsearch.dart';
 import 'package:flutter_demo/droplist/drop_list_demo.dart';
+import 'package:flutter_demo/eventbus/event_bus_demo.dart';
 import 'package:flutter_demo/glide_demo.dart';
 import 'package:flutter_demo/hero_demo/hero_one.dart';
 import 'package:flutter_demo/my_custom_view.dart';
@@ -38,6 +40,8 @@ import 'dart:async';
 import 'package:flutter_bugly/flutter_bugly.dart';
 import 'package:flutter_demo/fish_redux_muiltype_adapter/global_store/state.dart';
 import 'package:flutter_demo/fish_redux_muiltype_adapter/global_store/store.dart';
+import 'package:flutter_demo/common/events.dart';
+import 'package:flutter_demo/common/AppColors.dart';
 
 Future<Null> main() async{
 //  FlutterError.onError = (FlutterErrorDetails details) {
@@ -50,7 +54,9 @@ Future<Null> main() async{
 //  };
   FlutterBugly.postCatchedException((){
 
-    runApp(MyApp());
+  runApp(MyApp());
+//  runApp(CustomApp());
+
   });
   FlutterBugly.init(androidAppId: "79ea0abdc7",iOSAppId: "");
   debugPaintSizeEnabled = true;
@@ -58,6 +64,8 @@ Future<Null> main() async{
 
 //SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then((_){});
 }
+
+
 
 void setCustomErrorPage() {
   runZoned(() {
@@ -81,6 +89,49 @@ void setCustomErrorPage() {
   });
   
 }
+
+class CustomApp extends StatefulWidget {
+  @override
+  _CustomAppState createState() => _CustomAppState();
+}
+
+class _CustomAppState extends State<CustomApp> {
+
+  Color _primyColor;
+  StreamSubscription _sub;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _sub=eventBus.on<ThemeColor>().listen((event){
+        setState(() {
+          _primyColor=AppColors.getColor(event.color);
+        });
+    });
+    Map<String,dynamic> map={"as":12};
+    println("map===${map["as"]}");
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: "eventdemo",
+      theme: ThemeData(
+        primaryColor: _primyColor
+      ),
+      home: EventBusDemo(),
+
+    );
+  }
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _sub.cancel();
+  }
+}
+
 
 
 
